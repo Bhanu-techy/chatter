@@ -107,9 +107,5 @@ chatter-app/
   email: sai@gmail.com
   password: sai@1234
 ```
-
-
-```
-
 <br/>
 </details>

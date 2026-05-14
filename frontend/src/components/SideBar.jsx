@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import Cookies from 'js-cookie'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 function SideBar() {
 const [username, setUserName] = useState("")
@@ -33,7 +33,7 @@ const userId = Cookies.get('userId')
   }
 
   return (
-    <div className='w-[25%] bg-blue-200 h-[100vh] p-1 flex flex-col flex-between items-center'>
+    <div className='w-[25%] bg-blue-200 h-screen p-1 flex flex-col flex-between items-center bg-fixed'>
         <div className="flex  items-center gap-3 h-[20%]">
         <div className="w-11 h-11 rounded-2xl bg-purple-600 flex items-center justify-center text-xl font-bold">
         C
@@ -59,18 +59,16 @@ const userId = Cookies.get('userId')
       </div>
     </div>
     <div className='flex flex-col'>
-    <button className="bg-purple-500 h-[33px] text-white px-5 m-1 w-[90%] rounded-lg hover:bg-purple-700 transition">
-        Dashboard
-    </button>
-    <button className="bg-purple-500 h-[33px] text-white m-1 px-5 w-[90%] rounded-lg hover:bg-purple-700 transition">
-        Rooms
-    </button>
-    <button className="bg-purple-500 h-[33px] text-white m-1 px-5 w-[90%] rounded-lg hover:bg-purple-700 transition">
-        Direct Chats
-    </button>
-    <button className="bg-purple-500 h-[33px] text-white m-1 px-5 w-[90%] rounded-lg hover:bg-purple-700 transition">
-        Settings
-    </button>
+    <Link to='/'>
+    <button className="bg-purple-500 h-[33px] text-white px-5 m-1 w-[90%] rounded-lg hover:bg-purple-700 transition">Dashboard</button>
+    </Link>
+    <Link to='/rooms'>
+    <button className="bg-purple-500 h-[33px] text-white m-1 px-5 w-[90%] rounded-lg hover:bg-purple-700 transition">Rooms</button>
+    </Link>
+    <Link to='chats'>
+    <button className="bg-purple-500 h-[33px] text-white m-1 px-5 w-[90%] rounded-lg hover:bg-purple-700 transition">Direct Chats</button>
+    </Link>
+    <button className="bg-purple-500 h-[33px] text-white m-1 px-5 w-[90%] rounded-lg hover:bg-purple-700 transition">Settings</button>
     </div>
 
     </div> 

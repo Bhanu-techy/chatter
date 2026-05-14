@@ -125,46 +125,6 @@ app.get('/rooms', async (req, res) =>{
 })
 
 
-app.get('/room-members', async (req, res) =>{
-  const query = `SELECT
-  room_members.id,
-  rooms.name AS room_name,
-  users.full_name,
-  users.username
-FROM room_members
-JOIN rooms
-  ON room_members.room_id = rooms.id
-JOIN users
-  ON room_members.user_id = users.id;`
-
-  const result = await db.all(query)
-  res.json(result)
-})
-
-app.get('/rooms/:id/members', async (req, res) => {
-  const { id } = req.params
-
-  const query = `
-    SELECT
-      rooms.id AS room_id,
-      rooms.name AS room_name,
-      users.id AS user_id,
-      users.full_name,
-      users.username,
-      users.email,
-      users.avatar_url
-    FROM room_members
-    JOIN rooms
-      ON room_members.room_id = rooms.id
-    JOIN users
-      ON room_members.user_id = users.id
-    WHERE rooms.id = ?;
-  `
-  const result = await db.all(query, [id])
-
-  res.json(result)
-})
-
 app.get('/users/:id/private-users', async (req, res) => {
   const { id } = req.params
 
@@ -191,31 +151,7 @@ app.get('/users/:id/private-users', async (req, res) => {
   res.json(result)
 })
 
-app.get('/private-chats/:id', async (req, res) => {
-  const { id } = req.params
-
-  const query = `
-    SELECT
-      conversations.id AS conversation_id,
-      conversations.type,
-      users.id AS user_id,
-      users.full_name,
-      users.username,
-      users.email,
-      users.avatar_url
-    FROM conversation_participants
-    JOIN conversations
-      ON conversation_participants.conversation_id = conversations.id
-    JOIN users
-      ON conversation_participants.user_id = users.id
-    WHERE conversations.id = ?
-      AND conversations.type = 'private';
-  `
-
-  const result = await db.all(query, [id])
-
-  res.json(result)
-})
+  
 
 app.get('/conversations/:id', async (req, res) => {
   const { id } = req.params

@@ -4,22 +4,15 @@ import Cookies from 'js-cookie'
 import SideBar from './SideBar'
 import Users from './Users'
 
-function Home() {
+function Chats() {
 
-  const [rooms, setRooms] = useState([])
   const [chats, setChats] = useState([])
 
   const name= Cookies.get('name')
   const userId = Cookies.get('userId')
 
   useEffect(()=>{
-    const getRooms = async () => {
-      const response = await fetch('https://chatter-ric5.onrender.com/rooms')
-      const data = await response.json()
-      if (response.ok){
-        setRooms(data)
-      }
-    }
+    
     const getChats = async () => {
       const chatresponse = await fetch(`https://chatter-ric5.onrender.com/users/${userId}/private-users`)
       const chatdata = await chatresponse.json()
@@ -29,7 +22,6 @@ function Home() {
       }
     }
     getChats();
-    getRooms();
   })
 
 
@@ -38,13 +30,7 @@ function Home() {
       <SideBar/>
       <div className='p-1 w-[50%]'>
         <h1 className='m-2 h-[50px] text-2xl italic'>Wellcome back, {name}</h1>
-        <h1 className='m-2 text-2xl font-bold text-blue-600'>Public Rooms</h1>
-        <ul className='flex flex-col h-[50%]'>
-          {rooms.map(each => (
-            <li key={each.id} className='border border-blue-400 h-[40px] p-1 rounded m-1 mb-3 shadow shadow-blue-200'>{each.name}
-            </li>
-          ))}
-        </ul>
+        
         <hr className='h-[2px] bg-gray-300'/>
         <h1 className='m-2 text-2xl font-bold text-blue-600'>Direct Messages</h1>
         <ul>
@@ -58,9 +44,10 @@ function Home() {
           ))}
         </ul>
       </div>
+      <hr className='h-full bg-gray-500 w-[2px]'/>
       <Users/>
     </div>
   )
 }
 
-export default Home
+export default Chats

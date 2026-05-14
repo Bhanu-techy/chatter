@@ -35,7 +35,7 @@ function Chats() {
         <h1 className='m-2 text-2xl font-bold text-blue-600'>Direct Messages</h1>
         <ul>
           {chats.map(each =>(
-            <Link to={`chat/${each.id}`} key={each.id}>
+            <Link to={`/chat/${each.id}`} key={each.id}>
             <li className='flex items-center mb-1'>
               <img className='w-12 h-12 rounded-full object-cover mr-3' src={each.avatar_url} alt={each.username} />
               <p>{each.full_name}</p>

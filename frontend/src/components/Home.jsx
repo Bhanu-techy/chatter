@@ -25,13 +25,11 @@ function Home() {
       const chatdata = await chatresponse.json()
       if (chatresponse.ok){
         setChats(chatdata)
-        
       }
     }
     getChats();
     getRooms();
   })
-
 
   return (
     <div className='flex'>

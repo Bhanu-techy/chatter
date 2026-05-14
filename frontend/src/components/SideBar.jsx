@@ -11,7 +11,7 @@ const userId = Cookies.get('userId')
 
   useEffect(()=>{
     const userDetails = async ()=>{
-      const url = `http://localhost:5000/user/${userId}`
+      const url = `https://chatter-ric5.onrender.com/user/${userId}`
       const response = await fetch(url)
       const data = await response.json()
       if (response.ok){

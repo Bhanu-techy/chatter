@@ -13,14 +13,14 @@ function Home() {
 
   useEffect(()=>{
     const getRooms = async () => {
-      const response = await fetch('http://localhost:5000/rooms')
+      const response = await fetch('https://chatter-ric5.onrender.com/rooms')
       const data = await response.json()
       if (response.ok){
         setRooms(data)
       }
     }
     const getChats = async () => {
-      const chatresponse = await fetch(`http://localhost:5000/users/${userId}/private-users`)
+      const chatresponse = await fetch(`https://chatter-ric5.onrender.com/users/${userId}/private-users`)
       const chatdata = await chatresponse.json()
       if (chatresponse.ok){
         setChats(chatdata)

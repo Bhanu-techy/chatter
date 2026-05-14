@@ -6,7 +6,7 @@ function Users() {
 
     useEffect(()=>{
         const getUsers = async () => {
-            const url = 'http://localhost:5000/users'
+            const url = 'https://chatter-ric5.onrender.com/users'
             const response = await fetch (url)
             const data = await response.json()
             setUsers(data)

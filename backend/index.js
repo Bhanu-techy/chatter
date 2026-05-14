@@ -116,6 +116,11 @@ app.get('/users', async (req, res) =>{
   const result = await db.all(query)
   res.json(result)
 })
+app.get('/msgs', async (req, res) =>{
+  const query = `select * from messages`
+  const result = await db.all(query)
+  res.json(result)
+})
 
 
 app.get('/rooms', async (req, res) =>{
@@ -179,6 +184,35 @@ app.get('/conversations/:id', async (req, res) => {
 
   res.json(result)
 })
+
+
+app.get('/group-chats/:id/messages', async (req, res) => {
+  const { id } = req.params
+
+  const query = `
+    SELECT
+      messages.id AS message_id,
+      messages.message,
+      messages.created_at,
+      messages.conversation_id,
+
+      users.id AS sender_id,
+      users.full_name,
+      users.username,
+      users.avatar_url
+
+    FROM messages
+    JOIN users
+      ON messages.sender_id = users.id
+    WHERE messages.conversation_id = ?
+    ORDER BY messages.created_at ASC;
+  `
+
+  const result = await db.all(query, [id])
+
+  res.json(result)
+})
+
 
 
 

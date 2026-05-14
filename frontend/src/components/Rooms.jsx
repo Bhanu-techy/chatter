@@ -8,8 +8,6 @@ function Rooms() {
 
   const [rooms, setRooms] = useState([])
 
-  const name= Cookies.get('name')
-  const userId = Cookies.get('userId')
 
   useEffect(()=>{
     const getRooms = async () => {
@@ -31,8 +29,10 @@ function Rooms() {
         <h1 className='m-2 text-2xl font-bold text-blue-600'>Public Rooms</h1>
         <ul className='flex flex-col h-[50%]'>
           {rooms.map(each => (
-            <li key={each.id} className='border border-blue-400 h-[40px] p-1 rounded m-1 mb-3 shadow shadow-blue-200'>{each.name}
+            <Link key={each.id}  to={`/room/${each.id}`}>
+            <li  className='border border-blue-400 h-[40px] p-1 rounded m-1 mb-3 shadow shadow-blue-200'>{each.name}
             </li>
+            </Link>
           ))}
         </ul>
       </div>

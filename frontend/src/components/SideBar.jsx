@@ -65,7 +65,7 @@ const userId = Cookies.get('userId')
     <Link to='/rooms'>
     <button className="bg-purple-500 h-[33px] text-white m-1 px-5 w-[90%] rounded-lg hover:bg-purple-700 transition">Rooms</button>
     </Link>
-    <Link to='chats'>
+    <Link to='/chats'>
     <button className="bg-purple-500 h-[33px] text-white m-1 px-5 w-[90%] rounded-lg hover:bg-purple-700 transition">Direct Chats</button>
     </Link>
     <button className="bg-purple-500 h-[33px] text-white m-1 px-5 w-[90%] rounded-lg hover:bg-purple-700 transition">Settings</button>
